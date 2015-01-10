@@ -3,9 +3,9 @@ require "spec_helper"
 describe RandomApi::User do
   subject { RandomApi::User.new(stub_user_return) }
   it { should respond_to(:gender, :title, :first_name, :last_name, :name,
-                         :street, :city, :state, :zip, :email, :username,
-                         :password, :salt, :md5, :sha1, :sha256, :registered,
-                         :dob, :phone, :cell, :ssn, :large_picture,
+                         :address, :street, :city, :state, :zip, :email,
+                         :username, :password, :salt, :md5, :sha1, :sha256,
+                         :registered, :dob, :phone, :cell, :ssn, :large_picture,
                          :medium_picture, :thumbnail, :api_version, :seed,
                          :api_response) }
 
@@ -19,6 +19,12 @@ describe RandomApi::User do
         expect(user.title).to eq("Ms.")
         expect(user.first_name).to eq("Lois")
         expect(user.last_name).to eq("Williams")
+        expect(user.address).to eq({
+          "street" => "1969 Elgin St",
+          "city" => "Frederick",
+          "state" => "Delaware",
+          "zip" => "56298"
+        })
         expect(user.street).to eq("1969 Elgin St")
         expect(user.city).to eq("Frederick")
         expect(user.state).to eq("Delaware")
